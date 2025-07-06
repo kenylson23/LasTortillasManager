@@ -1,19 +1,11 @@
 {
   "buildCommand": "bash build-vercel.sh",
   "outputDirectory": "dist/client",
-  "installCommand": "npm install",
   "framework": null,
-  "env": {
-    "DATABASE_URL": "@database_url"
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/$1"
+      "destination": "/api/[...path]"
     }
   ]
 }
