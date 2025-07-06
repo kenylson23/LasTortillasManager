@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
 import { isUnauthorizedError } from "@/lib/authUtils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,10 +12,10 @@ import Charts from "@/components/dashboard/charts";
 
 export default function Analytics() {
   const { toast } = useToast();
-  const { isAuthenticated, isLoading } = useAuth();
+  const { user, isLoading } = useAuth();
 
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
+    if (!isLoading && !!!user) {
       toast({
         title: "Não autorizado",
         description: "Você precisa estar logado. Redirecionando...",
@@ -26,7 +26,7 @@ export default function Analytics() {
       }, 500);
       return;
     }
-  }, [isAuthenticated, isLoading, toast]);
+  }, [user, isLoading, toast]);
 
   const { data: stats, isLoading: isLoadingStats } = useQuery({
     queryKey: ["/api/dashboard/stats"],
@@ -46,7 +46,7 @@ export default function Analytics() {
     );
   }
 
-  if (!isAuthenticated) {
+  if (!!!user) {
     return null;
   }
 

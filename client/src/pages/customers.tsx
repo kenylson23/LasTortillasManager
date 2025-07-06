@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
 import { isUnauthorizedError } from "@/lib/authUtils";
 import { apiRequest } from "@/lib/queryClient";
@@ -15,11 +15,11 @@ import type { Customer } from "@shared/schema";
 
 export default function Customers() {
   const { toast } = useToast();
-  const { isAuthenticated, isLoading } = useAuth();
+  const { user, isLoading } = useAuth();
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
+    if (!isLoading && !!!user) {
       toast({
         title: "Não autorizado",
         description: "Você precisa estar logado. Redirecionando...",
@@ -30,7 +30,7 @@ export default function Customers() {
       }, 500);
       return;
     }
-  }, [isAuthenticated, isLoading, toast]);
+  }, [user, isLoading, toast]);
 
   const { data: customers, isLoading: isLoadingCustomers } = useQuery({
     queryKey: ["/api/customers"],
@@ -89,7 +89,7 @@ export default function Customers() {
     );
   }
 
-  if (!isAuthenticated) {
+  if (!!!user) {
     return null;
   }
 

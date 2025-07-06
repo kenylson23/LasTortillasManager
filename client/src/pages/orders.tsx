@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
 import { isUnauthorizedError } from "@/lib/authUtils";
 import { apiRequest } from "@/lib/queryClient";
@@ -46,11 +46,11 @@ const statusConfig = {
 
 export default function Orders() {
   const { toast } = useToast();
-  const { isAuthenticated, isLoading } = useAuth();
+  const { user, isLoading } = useAuth();
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
+    if (!isLoading && !!!user) {
       toast({
         title: "Não autorizado",
         description: "Você precisa estar logado. Redirecionando...",
@@ -61,7 +61,7 @@ export default function Orders() {
       }, 500);
       return;
     }
-  }, [isAuthenticated, isLoading, toast]);
+  }, [user, isLoading, toast]);
 
   const { data: orders, isLoading: isLoadingOrders } = useQuery({
     queryKey: ["/api/orders"],
@@ -128,7 +128,7 @@ export default function Orders() {
     );
   }
 
-  if (!isAuthenticated) {
+  if (!!!user) {
     return null;
   }
 
