@@ -6,7 +6,7 @@
   "functions": {
     "api/index.ts": {
       "maxDuration": 30,
-      "runtime": "nodejs20.x"
+      "runtime": "nodejs18.x"
     }
   },
   "env": {
