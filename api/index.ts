@@ -29,11 +29,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Registrar todas as rotas
-(async () => {
-  await registerRoutes(app);
-})();
-
 // Error handling
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   const status = err.status || err.statusCode || 500;
@@ -42,5 +37,19 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   res.status(status).json({ message });
 });
 
+// Função principal para inicializar as rotas
+let appInitialized = false;
+
+async function initializeApp() {
+  if (!appInitialized) {
+    await registerRoutes(app);
+    appInitialized = true;
+  }
+  return app;
+}
+
 // Export para Vercel
-export default app;
+export default async function handler(req: Request, res: Response) {
+  const app = await initializeApp();
+  return app(req, res);
+}

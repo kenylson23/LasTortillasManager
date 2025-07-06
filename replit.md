@@ -167,6 +167,13 @@ Changelog:
   * Added CORS support for production deployment
   * Created build scripts and migration guide
   * Maintained PostgreSQL Neon database compatibility
+- July 06, 2025. Fixed Vercel deployment configuration errors
+  * Removed invalid runtime specification from vercel.json
+  * Fixed api/index.ts to properly export serverless function handler
+  * Updated build-vercel.sh script to use correct build commands
+  * Changed vercel.json to use bash build script instead of npm script
+  * Added proper TypeScript configuration for Vercel builds
+  * Documented complete deployment process in DEPLOY_VERCEL.md
 ```
 
 ## User Preferences
