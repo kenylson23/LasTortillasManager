@@ -134,6 +134,17 @@ This is a comprehensive restaurant management system built for "Las Tortilhas" r
 - Database runs on Neon serverless infrastructure
 - Sessions and authentication handled securely with proper cookie configuration
 
+## Default Admin User
+
+The system includes a default admin user for initial access:
+
+- **Username**: admin
+- **Password**: admin123
+- **Email**: admin@lastortilhas.com
+- **Role**: admin
+
+**Important**: Change the default password after first login for security.
+
 ## Changelog
 
 ```
@@ -145,6 +156,11 @@ Changelog:
   * Implemented bcrypt password hashing for security
   * Created dedicated auth page with login/register forms
   * Updated user schema with username, password, and user fields
+- July 06, 2025. Added standardized admin user setup
+  * Created default admin user with standardized credentials
+  * Added admin setup script for future deployments
+  * Fixed database connection issues by setting up PostgreSQL
+  * Ensured proper database schema deployment
 ```
 
 ## User Preferences

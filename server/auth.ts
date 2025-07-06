@@ -44,6 +44,7 @@ export function setupAuth(app: Express) {
   const sessionStore = new PostgresSessionStore({
     conString: process.env.DATABASE_URL,
     createTableIfMissing: false,
+    tableName: "sessions"
   });
 
   const sessionSettings: session.SessionOptions = {
