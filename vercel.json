@@ -1,13 +1,16 @@
 {
-  "buildCommand": "vite build",
+  "buildCommand": "npm run build:vercel",
   "outputDirectory": "dist/client",
   "installCommand": "npm install",
   "framework": null,
   "functions": {
-    "api/index.js": {
+    "api/index.ts": {
       "maxDuration": 30,
       "runtime": "nodejs20.x"
     }
+  },
+  "env": {
+    "DATABASE_URL": "@database_url"
   },
   "rewrites": [
     {
