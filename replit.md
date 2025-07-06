@@ -174,6 +174,10 @@ Changelog:
   * Changed vercel.json to use bash build script instead of npm script
   * Added proper TypeScript configuration for Vercel builds
   * Documented complete deployment process in DEPLOY_VERCEL.md
+- July 07, 2025. Additional Vercel deployment fixes
+  * Removed functions configuration from vercel.json to allow automatic detection
+  * Added api/package.json with module type specification
+  * Simplified deployment configuration for better compatibility
 ```
 
 ## User Preferences
