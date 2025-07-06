@@ -1,5 +1,6 @@
 import { Bell, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/use-auth";
 
 interface TopBarProps {
   title: string;
@@ -7,8 +8,10 @@ interface TopBarProps {
 }
 
 export default function TopBar({ title, subtitle }: TopBarProps) {
+  const { user, logoutMutation } = useAuth();
+
   const handleLogout = () => {
-    window.location.href = "/api/logout";
+    logoutMutation.mutate();
   };
 
   return (

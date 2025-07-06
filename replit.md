@@ -32,10 +32,11 @@ This is a comprehensive restaurant management system built for "Las Tortilhas" r
 ## Key Components
 
 ### Authentication System
-- **Provider**: Replit Auth with OpenID Connect
-- **Session Management**: Server-side sessions stored in PostgreSQL
-- **User Management**: Complete user profile system with roles
-- **Security**: HTTP-only cookies with secure session handling
+- **Provider**: Traditional PostgreSQL username/password authentication
+- **Session Management**: Express sessions with PostgreSQL storage using connect-pg-simple
+- **User Management**: Complete user profile system with roles and local user storage
+- **Security**: Bcrypt password hashing, HTTP-only session cookies, secure session handling
+- **Features**: User registration, login, logout, password encryption
 
 ### Menu Management
 - Full CRUD operations for menu items
@@ -138,6 +139,12 @@ This is a comprehensive restaurant management system built for "Las Tortilhas" r
 ```
 Changelog:
 - July 06, 2025. Initial setup
+- July 06, 2025. Migrated from Replit Auth to PostgreSQL username/password authentication
+  * Replaced OpenID Connect with traditional login system
+  * Added user registration, login, and logout functionality
+  * Implemented bcrypt password hashing for security
+  * Created dedicated auth page with login/register forms
+  * Updated user schema with username, password, and user fields
 ```
 
 ## User Preferences
