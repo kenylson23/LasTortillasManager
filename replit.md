@@ -1,0 +1,147 @@
+# Las Tortilhas Restaurant Management System
+
+## Overview
+
+This is a comprehensive restaurant management system built for "Las Tortilhas" restaurant. The application provides a complete solution for managing menu items, orders, tables, staff, customers, inventory, and analytics. It features a modern web interface with real-time updates and a responsive design optimized for both desktop and mobile devices.
+
+## System Architecture
+
+### Frontend Architecture
+- **Framework**: React with TypeScript
+- **Build Tool**: Vite for fast development and optimized builds
+- **UI Library**: Radix UI components with shadcn/ui styling system
+- **Styling**: Tailwind CSS with custom design tokens for warm restaurant-themed colors
+- **State Management**: TanStack Query (React Query) for server state management
+- **Routing**: Wouter for lightweight client-side routing
+- **Forms**: React Hook Form with Zod validation
+
+### Backend Architecture
+- **Runtime**: Node.js with Express.js REST API
+- **Language**: TypeScript throughout the entire stack
+- **Database**: PostgreSQL with Neon serverless database
+- **ORM**: Drizzle ORM with type-safe queries
+- **Authentication**: Replit Auth with OpenID Connect integration
+- **Session Management**: Express sessions with PostgreSQL storage
+
+### Database Architecture
+- **Primary Database**: PostgreSQL hosted on Neon
+- **Connection**: Neon serverless with WebSocket support
+- **Schema Management**: Drizzle Kit for migrations and schema management
+- **Session Storage**: PostgreSQL-backed session store for authentication
+
+## Key Components
+
+### Authentication System
+- **Provider**: Replit Auth with OpenID Connect
+- **Session Management**: Server-side sessions stored in PostgreSQL
+- **User Management**: Complete user profile system with roles
+- **Security**: HTTP-only cookies with secure session handling
+
+### Menu Management
+- Full CRUD operations for menu items
+- Category-based organization (Tortilhas, Burritos, Tacos, etc.)
+- Image upload support for menu items
+- Availability tracking and pricing management
+
+### Order Management
+- Real-time order tracking with status updates
+- Order workflow: Pending → Preparing → Ready → Completed
+- Order details with itemized breakdown
+- Table assignment and customer tracking
+
+### Table Management
+- Visual table grid with real-time status updates
+- Table states: Available, Occupied, Reserved, Maintenance
+- Capacity tracking and reservation system
+- Interactive table selection interface
+
+### Staff Management
+- Employee profiles with role-based access
+- Shift tracking and availability management
+- Contact information and performance metrics
+
+### Customer Management
+- Customer profiles with order history
+- Loyalty tracking and preferences
+- Contact information and visit statistics
+
+### Inventory Management
+- Stock tracking with low-stock alerts
+- Supplier information and reorder levels
+- Cost tracking and inventory valuation
+
+### Analytics & Reporting
+- Daily sales statistics and revenue tracking
+- Weekly sales charts and trend analysis
+- Popular dishes analysis with visual charts
+- Table occupancy and staff performance metrics
+
+## Data Flow
+
+### Client-Server Communication
+1. **Authentication Flow**: User authenticates via Replit Auth → Server validates and creates session → Client receives user data
+2. **API Requests**: Client uses TanStack Query → Makes authenticated requests to Express API → Server processes with Drizzle ORM → Returns JSON responses
+3. **Real-time Updates**: Client polls for updates → Server provides fresh data → UI updates reactively
+
+### Database Operations
+1. **Schema Definition**: Centralized schema in `shared/schema.ts` using Drizzle ORM
+2. **Data Access**: Storage layer abstracts database operations
+3. **Validation**: Zod schemas ensure type safety across client and server
+4. **Migrations**: Drizzle Kit handles schema changes and migrations
+
+## External Dependencies
+
+### Core Framework Dependencies
+- React ecosystem (React, React DOM, React Query)
+- Express.js with TypeScript support
+- Drizzle ORM with PostgreSQL adapter
+- Neon serverless database client
+
+### UI and Styling
+- Radix UI primitives for accessible components
+- Tailwind CSS for utility-first styling
+- Lucide React for consistent iconography
+- Recharts for data visualization
+
+### Development Tools
+- Vite for development server and build process
+- TypeScript for type safety
+- ESBuild for server-side bundling
+- Replit-specific development plugins
+
+### Authentication and Security
+- Replit Auth OpenID Connect client
+- Express session middleware
+- PostgreSQL session store
+- Passport.js for authentication strategies
+
+## Deployment Strategy
+
+### Build Process
+1. **Frontend Build**: Vite compiles React app with TypeScript and Tailwind
+2. **Server Build**: ESBuild bundles Express server with external dependencies
+3. **Database Setup**: Drizzle migrations ensure schema is up-to-date
+4. **Asset Optimization**: Vite optimizes static assets for production
+
+### Environment Configuration
+- Database connection via `DATABASE_URL` environment variable
+- Session secrets and authentication configuration
+- Replit-specific environment variables for auth integration
+
+### Production Deployment
+- Server serves both API endpoints and static frontend assets
+- Database runs on Neon serverless infrastructure
+- Sessions and authentication handled securely with proper cookie configuration
+
+## Changelog
+
+```
+Changelog:
+- July 06, 2025. Initial setup
+```
+
+## User Preferences
+
+```
+Preferred communication style: Simple, everyday language.
+```
