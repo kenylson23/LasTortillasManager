@@ -105,6 +105,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     onSuccess: () => {
       queryClient.setQueryData(["/api/user"], null);
+      queryClient.clear();
       toast({
         title: "Logout realizado",
         description: "Até logo!",
