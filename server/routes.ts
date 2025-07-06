@@ -13,7 +13,7 @@ import {
   insertReservationSchema
 } from "@shared/schema";
 
-export async function registerRoutes(app: Express): Promise<Server> {
+export function setupRoutes(app: Express) {
   // Auth middleware
   setupAuth(app);
 
@@ -361,6 +361,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+}
+
+export async function registerRoutes(app: Express): Promise<Server> {
+  setupRoutes(app);
   const httpServer = createServer(app);
   return httpServer;
 }

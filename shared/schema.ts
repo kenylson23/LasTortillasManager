@@ -171,6 +171,8 @@ export const insertMenuItemSchema = createInsertSchema(menuItems).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
+}).extend({
+  price: z.union([z.string(), z.number()]).transform((val) => String(val))
 });
 
 export const insertOrderSchema = createInsertSchema(orders).omit({
