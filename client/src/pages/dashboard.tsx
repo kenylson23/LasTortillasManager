@@ -14,14 +14,14 @@ export default function Dashboard() {
   const { user, isLoading } = useAuth();
 
   useEffect(() => {
-    if (!isLoading && !!!user) {
+    if (!isLoading && !user) {
       toast({
         title: "Não autorizado",
         description: "Você precisa estar logado. Redirecionando...",
         variant: "destructive",
       });
       setTimeout(() => {
-        window.location.href = "/api/login";
+        window.location.href = "/auth";
       }, 500);
       return;
     }
@@ -35,22 +35,18 @@ export default function Dashboard() {
     );
   }
 
-  if (!!!user) {
+  if (!user) {
     return null;
   }
 
   return (
-    <div className="flex h-screen overflow-hidden bg-warm">
-      <Sidebar />
-      <div className="flex-1 overflow-y-auto">
-        <MobileNav />
-        <TopBar title="Dashboard" subtitle="Visão geral do restaurante" />
-        
-        <div className="p-6">
-          <MetricsCards />
-          <Charts />
-          <RecentOrders />
-        </div>
+    <div className="bg-warm">
+      <TopBar title="Dashboard" subtitle="Visão geral do restaurante" />
+      
+      <div className="p-6">
+        <MetricsCards />
+        <Charts />
+        <RecentOrders />
       </div>
     </div>
   );
