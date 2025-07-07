@@ -1,85 +1,44 @@
-# Deploy para Vercel - Las Tortilhas
+# Guia de Deploy no Vercel
 
-## Pré-requisitos
+## Configuração Atual
 
-1. Conta no Vercel
-2. Vercel CLI instalado (`npm i -g vercel`)
-3. Banco de dados PostgreSQL (Neon, Supabase, ou similar)
+O projeto está configurado para deploy no Vercel com as seguintes configurações:
 
-## Variáveis de Ambiente
+### Arquivos de Configuração
 
-Configure as seguintes variáveis no Vercel:
+1. **vercel.json** - Configuração principal do Vercel
+2. **api/index.js** - Função serverless principal
+3. **api/[...path].js** - Roteamento catch-all para API
+4. **api/package.json** - Especifica módulos ES6 para as funções
 
-```
-DATABASE_URL=postgresql://...
-SESSION_SECRET=sua-chave-secreta-aqui
-NODE_ENV=production
-```
+### Processo de Build
 
-## Passos para Deploy
+O comando `npm run build` deve ser usado, que:
+1. Executa `vite build` para compilar o frontend
+2. Executa `esbuild` para compilar o servidor
 
-### 1. Prepare o projeto
+### Variáveis de Ambiente
 
-```bash
-# Clone o repositório
-git clone [seu-repositorio]
-cd [seu-projeto]
+Configure as seguintes variáveis no painel do Vercel:
 
-# Instale as dependências
-npm install
-```
+1. `DATABASE_URL` - URL do banco PostgreSQL (Neon)
+2. `NODE_ENV` - Definir como `production`
 
-### 2. Configure o banco de dados
+### Estrutura de Deploy
 
-```bash
-# Execute as migrations
-npm run db:push
+- **Frontend**: Arquivos estáticos servidos pelo Vercel
+- **API**: Funções serverless na pasta `/api`
+- **Banco**: PostgreSQL (Neon) externo
 
-# Crie o usuário admin
-npx tsx scripts/setup-admin.ts
-```
+### Problemas Comuns
 
-### 3. Deploy no Vercel
+1. **Comando não encontrado**: Usar `npm run build` em vez de comandos individuais
+2. **Módulos ES6**: Arquivo `api/package.json` com `"type": "module"`
+3. **CORS**: Configurado automaticamente nas funções da API
 
-```bash
-# Faça login no Vercel
-vercel login
+### Passos para Deploy
 
-# Deploy
-vercel
-
-# Ou conecte ao GitHub e faça deploy automático
-```
-
-### 4. Configure as variáveis de ambiente no Vercel
-
-1. Acesse o dashboard do Vercel
-2. Vá em Settings > Environment Variables
-3. Adicione todas as variáveis listadas acima
-
-## Estrutura do Deploy
-
-- **Frontend**: Servido estaticamente pelo Vercel
-- **Backend**: Funções serverless em `/api`
-- **Banco de dados**: PostgreSQL externo (Neon recomendado)
-
-## Troubleshooting
-
-### Erro de sessão
-Se houver erro com sessões, verifique se:
-- A variável SESSION_SECRET está configurada
-- O banco de dados está acessível
-- A tabela de sessões existe
-
-### Erro 500 nas APIs
-- Verifique os logs do Vercel
-- Confirme que DATABASE_URL está correto
-- Teste a conexão com o banco localmente
-
-## Admin padrão
-
-Após o deploy, use estas credenciais:
-- Username: admin
-- Password: admin123
-
-**Importante**: Mude a senha após o primeiro login!
+1. Conecte o repositório ao Vercel
+2. Configure as variáveis de ambiente
+3. O build será executado automaticamente com `npm run build`
+4. As funções API serão implantadas em `/api/*`

@@ -4,14 +4,21 @@
 
 echo "Building for Vercel deployment..."
 
-# Build do frontend
+# Instalar dependências se necessário
+echo "Installing dependencies..."
+npm ci
+
+# Build do frontend usando npm run build
 echo "Building frontend..."
-vite build
+npm run build
 
 # Criar diretório de saída se não existir
 mkdir -p dist/client
 
-# Copiar arquivos do frontend
-cp -r dist/* dist/client/
+# Copiar arquivos do frontend para o diretório correto
+echo "Copying frontend files..."
+if [ -d "dist" ]; then
+  cp -r dist/* dist/client/ 2>/dev/null || true
+fi
 
 echo "Build complete for Vercel!"

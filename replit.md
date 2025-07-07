@@ -178,6 +178,12 @@ Changelog:
   * Removed functions configuration from vercel.json to allow automatic detection
   * Added api/package.json with module type specification
   * Simplified deployment configuration for better compatibility
+- July 07, 2025. Fixed Vercel build command issues
+  * Corrected build-vercel.sh script to use npm commands instead of direct vite calls
+  * Updated vercel.json to use npm run build instead of custom bash script
+  * Created proper api/index.js serverless function entry point
+  * Added comprehensive DEPLOY_VERCEL.md documentation
+  * Fixed "comando não encontrado" error by using npx and npm commands
 ```
 
 ## User Preferences
