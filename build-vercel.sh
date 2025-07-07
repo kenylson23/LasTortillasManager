@@ -4,21 +4,12 @@
 
 echo "Building for Vercel deployment..."
 
-# Instalar dependências se necessário
-echo "Installing dependencies..."
-npm ci
-
-# Build do frontend usando npm run build
+# Build do frontend usando npx para garantir que os comandos sejam encontrados
 echo "Building frontend..."
-npm run build
+npx vite build
 
-# Criar diretório de saída se não existir
-mkdir -p dist/client
-
-# Copiar arquivos do frontend para o diretório correto
-echo "Copying frontend files..."
-if [ -d "dist" ]; then
-  cp -r dist/* dist/client/ 2>/dev/null || true
-fi
+# Build do servidor usando npx
+echo "Building server..."
+npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
 
 echo "Build complete for Vercel!"

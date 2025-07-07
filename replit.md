@@ -184,6 +184,11 @@ Changelog:
   * Created proper api/index.js serverless function entry point
   * Added comprehensive DEPLOY_VERCEL.md documentation
   * Fixed "comando não encontrado" error by using npx and npm commands
+- July 07, 2025. Final Vercel deployment fixes for exit code 127
+  * Changed vercel.json to use direct npx commands instead of bash scripts
+  * Simplified build process: "npx vite build && npx esbuild server/index.ts..."
+  * Removed dependency on custom build scripts that caused command not found errors
+  * Updated documentation with exit code 127 troubleshooting
 ```
 
 ## User Preferences

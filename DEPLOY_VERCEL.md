@@ -32,9 +32,13 @@ Configure as seguintes variáveis no painel do Vercel:
 
 ### Problemas Comuns
 
-1. **Comando não encontrado**: Usar `npm run build` em vez de comandos individuais
+1. **Comando não encontrado (exit code 127)**: 
+   - Usar `npx vite build` em vez de `vite build`
+   - Usar `bash build-vercel.sh` como comando de build
+   - Garantir que o script está executável
 2. **Módulos ES6**: Arquivo `api/package.json` com `"type": "module"`
 3. **CORS**: Configurado automaticamente nas funções da API
+4. **Timeout no build**: Vercel tem limite de 15 minutos para builds
 
 ### Passos para Deploy
 
